@@ -1,9 +1,16 @@
-#include "global.h"
 #include "monty.h"
 
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
+
+	global_vars = malloc(sizeof(*global_vars));
+	if (global_vars == NULL)
+		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
+
+	global_vars->file = NULL;
+	global_vars->current_line = NULL;
+	global_vars->push_number = 0;
 
 	if (argc != 2)
 		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);

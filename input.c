@@ -1,4 +1,3 @@
-#include "global.h"
 #include "monty.h"
 
 /**
@@ -14,10 +13,10 @@ int check_number(char *number)
 	return (0);
 }
 
-void print_number(void)
-{
-	printf("Number = %d\n", push_number);
-}
+/* void print_number(void) */
+/* { */
+/* 	printf("Number = %d\n", push_number); */
+/* } */
 
 /**
  * main - Entry point
@@ -35,7 +34,7 @@ int read_monty(char *path, stack_t **stack)
 	err_2 = ": usage: push integer\n";
 	err_3 = ": unknown instruction ";
 	line = opcode = number = NULL;
-	file = fopen(path, "r");
+	file = global_vars->file = fopen(path, "r");
 	if (file == NULL)
 		fprintf(stderr, "%s%s\n", err_1, path), exit(EXIT_FAILURE);
 	l_num = 0;
@@ -50,9 +49,9 @@ int read_monty(char *path, stack_t **stack)
 				fprintf(stderr, "L%d%s", l_num, err_2), free_error(line, file, stack);
 			if (number && check_number(number) == 1)
 				fprintf(stderr, "L%d%s", l_num, err_2), free_error(line, file, stack);
-			push_number = atoi(number);
+			global_vars->push_number = atoi(number);
 		}
-		printf("opcode = %s, number = %d\n", opcode, push_number);
+		printf("opcode = %s, number = %d\n", opcode, global_vars->push_number);
 		/* print_number(); */
 
 		if (opcode && select_opcode(opcode, stack,  l_num) == 1)

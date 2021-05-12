@@ -35,6 +35,23 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct global_vars_s - bla bla bla
+ * @file: bla bla
+ * @current_line: askjalskdja
+ * @push_number: sfjasdjfhalksdfj
+ *
+ * Description: basldfasldjfhalksjdhfklaf
+ */
+typedef struct global_vars_s
+{
+	FILE *file;
+	char *current_line;
+	int push_number;
+} global_vars_t;
+
+global_vars_t *global_vars;
+
 /* File reading - input.c */
 int read_monty(char *path, stack_t **stack);
 int check_number(char *number);
@@ -46,8 +63,12 @@ void free_stack(stack_t **stack);
 /* Opcodes - opcodes_1.c */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 
 /* Opcode selection - select_opcode.c */
 int select_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+
+/* Opcodes calculation - opcodes_calc.c */
+void add(stack_t **stack, unsigned int line_number);
 
 #endif

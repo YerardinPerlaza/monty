@@ -1,4 +1,3 @@
-#include "global.h"
 #include "monty.h"
 
 /**
@@ -18,7 +17,7 @@ void push(stack_t **stack, unsigned int line_number)
 		/* Pasar struct global con línea actual, archivo y push, ¿cómo? */
 		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
 
-	new_node->n = push_number;
+	new_node->n = global_vars->push_number;
 	new_node->prev = NULL;
 
 	if (!*stack)
@@ -50,4 +49,19 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
+}
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current;
+
+	current = *stack;
+	if (!current)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	*stack = current->next;
+	free(current);
 }
