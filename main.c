@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 	global_vars->file = NULL;
 	global_vars->current_line = NULL;
 	global_vars->push_number = 0;
+	global_vars->mode = 0;
 
 	if (read_monty(argv[1], &stack) == 1)
 		free_all(&stack, EXIT_FAILURE);

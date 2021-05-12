@@ -40,7 +40,7 @@ typedef struct instruction_s
  * @file: the file opened
  * @current_line: the line read by getline
  * @push_number: the number to be pushed to the stack
- *
+ * @mode: the mode of the list. 0 for stack, 1 for queue
  * Description: a structure holding some global variables
  */
 typedef struct global_vars_s
@@ -48,6 +48,7 @@ typedef struct global_vars_s
 	FILE *file;
 	char *current_line;
 	int push_number;
+	short mode;
 } global_vars_t;
 
 global_vars_t *global_vars;
@@ -77,7 +78,9 @@ void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
 
-/* Opcodes list, part 3 - opcodes_3.c */
+/* Opcodes list, change mode - opcodes_mode.c */
+void stack_mode(stack_t **stack, unsigned int line_number);
+void queue_mode(stack_t **stack, unsigned int line_number);
 
 /* Opcodes calculation - opcodes_calc.c */
 void add(stack_t **stack, unsigned int line_number);

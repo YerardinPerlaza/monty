@@ -7,7 +7,7 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
+	stack_t *new_node, *current;
 
 	(void)line_number;
 
@@ -20,10 +20,32 @@ void push(stack_t **stack, unsigned int line_number)
 
 	new_node->n = global_vars->push_number;
 
-	new_node->prev = NULL;
-	new_node->next = !*stack ? NULL : *stack;
+	/* Stack mode */
+	if (global_vars->mode == 0)
+	{
+		new_node->prev = NULL;
+		new_node->next = !*stack ? NULL : *stack;
 
-	*stack = new_node;
+		*stack = new_node;
+		return;
+	}
+
+	/* Queue mode */
+	new_node->next = NULL;
+	current = *stack;
+	if (!current)
+	{
+		new_node->prev = NULL;
+
+		*stack = new_node;
+		return;
+	}
+
+	while (current->next)
+		current = current->next;
+
+	new_node->prev = current;
+	current->next = new_node;
 }
 
 /**
