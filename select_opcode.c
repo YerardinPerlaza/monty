@@ -1,5 +1,11 @@
 #include "monty.h"
-
+/**
+ * select_opcode - find opcode and execute
+ * @opcode: string with instruction
+ * @stack: stack
+ * @line_number: unsigned int
+ * Return: 0-Success / 1-Fail
+ */
 int select_opcode(char *opcode, stack_t **stack, unsigned int line_number)
 {
 	instruction_t opcodes[] = {
