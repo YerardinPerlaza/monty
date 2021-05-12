@@ -55,3 +55,59 @@ void pstr(stack_t **stack, unsigned int line_number)
 	}
 	printf("\n");
 }
+
+/**
+ * rotl - sends the head of the stack to the tail
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current, *rot, *head;
+
+	(void)line_number;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+
+	current = rot = *stack;
+	head = (*stack)->next;
+
+	while (current->next)
+		current = current->next;
+
+	current->next = rot;
+	rot->prev = current;
+	rot->next = NULL;
+
+	*stack = head;
+}
+
+/**
+ * rotr - sends the tail of the stack to the head
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tail, *head, *rot;
+
+	(void)line_number;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return;
+
+	tail = head = *stack;
+
+	while ((tail->next)->next)
+		tail = tail->next;
+	rot = tail->next;
+
+	tail->next = NULL;
+	rot->prev = NULL;
+
+	rot->next = head;
+	head->prev = rot;
+
+	*stack = rot;
+}

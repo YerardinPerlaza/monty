@@ -19,16 +19,10 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	new_node->n = global_vars->push_number;
+
 	new_node->prev = NULL;
+	new_node->next = !*stack ? NULL : *stack;
 
-	if (!*stack)
-	{
-		new_node->next = NULL;
-		*stack = new_node;
-		return;
-	}
-
-	new_node->next = *stack;
 	*stack = new_node;
 }
 

@@ -74,6 +74,10 @@ void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+
+/* Opcodes list, part 3 - opcodes_3.c */
 
 /* Opcodes calculation - opcodes_calc.c */
 void add(stack_t **stack, unsigned int line_number);
