@@ -45,19 +45,22 @@ int read_monty(char *path, stack_t **stack)
 		opcode = strtok(global_vars->current_line, " \t\r\n");
 		number = strtok(NULL, " \t\r\n");
 		l_num++;
-		if (opcode && strcmp(opcode, "push") == 0)
+		if (opcode[0] != '#')
 		{
-			if (!number || (number && check_number(number) == 1))
+			if (opcode && strcmp(opcode, "push") == 0)
 			{
-				fprintf(stderr, "L%d%s", l_num, err_2);
+				if (!number || (number && check_number(number) == 1))
+				{
+					fprintf(stderr, "L%d%s", l_num, err_2);
+					return (1);
+				}
+				global_vars->push_number = atoi(number);
+			}
+			if (opcode && exec_opcode(opcode, stack, l_num) == 1)
+			{
+				fprintf(stderr, "L%d%s%s\n", l_num, err_3, opcode);
 				return (1);
 			}
-			global_vars->push_number = atoi(number);
-		}
-		if (opcode && exec_opcode(opcode, stack, l_num) == 1)
-		{
-			fprintf(stderr, "L%d%s%s\n", l_num, err_3, opcode);
-			return (1);
 		}
 	}
 	return (0);
