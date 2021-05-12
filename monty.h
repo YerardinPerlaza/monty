@@ -72,6 +72,7 @@ void swap(stack_t **stack, unsigned int line_number);
 
 /* Opcodes list, part 2 - opcodes_2.c */
 void nop(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
 
 /* Opcodes calculation - opcodes_calc.c */
 void add(stack_t **stack, unsigned int line_number);
