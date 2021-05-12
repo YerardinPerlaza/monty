@@ -67,6 +67,9 @@ void pop(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 
+/* Opcodes- opcodes_2.c */
+void nop(stack_t **stack, unsigned int line_number);
+
 /* Opcode selection - select_opcode.c */
 int select_opcode(char *opcode, stack_t **stack, unsigned int line_number);
 
