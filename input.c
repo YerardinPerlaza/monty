@@ -11,7 +11,8 @@ int check_number(char *number)
 	int i;
 
 	for (i = 0; number[i]; number++)
-		if (!(number[i] >= '0' && number[i] <= '9'))
+		if (!((number[i] >= '0' && number[i] <= '9') ||
+		      number[i] == '-'))
 			return (1);
 	return (0);
 }
@@ -41,17 +42,12 @@ int read_monty(char *path, stack_t **stack)
 	l_num = 0;
 	while (getline(&(global_vars->current_line), &line_size, file) != EOF)
 	{
-		opcode = strtok(global_vars->current_line, " \t\n");
-		number = strtok(NULL, " \t\n");
+		opcode = strtok(global_vars->current_line, " \t\r\n");
+		number = strtok(NULL, " \t\r\n");
 		l_num++;
 		if (opcode && strcmp(opcode, "push") == 0)
 		{
-			if (!number)
-			{
-				fprintf(stderr, "L%d%s", l_num, err_2);
-				return (1);
-			}
-			if (number && check_number(number) == 1)
+			if (!number || (number && check_number(number) == 1))
 			{
 				fprintf(stderr, "L%d%s", l_num, err_2);
 				return (1);
