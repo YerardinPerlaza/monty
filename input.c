@@ -42,10 +42,10 @@ int read_monty(char *path, stack_t **stack)
 	l_num = 0;
 	while (getline(&(global_vars->current_line), &line_size, file) != EOF)
 	{
-		opcode = strtok(global_vars->current_line, " \t\r\n");
-		number = strtok(NULL, " \t\r\n");
+		opcode = strtok(global_vars->current_line, " \r\t\n");
+		number = strtok(NULL, " \r\t\n");
 		l_num++;
-		if (opcode[0] != '#')
+		if (opcode && opcode[0] != '#')
 		{
 			if (opcode && strcmp(opcode, "push") == 0)
 			{
