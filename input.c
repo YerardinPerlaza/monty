@@ -34,12 +34,14 @@ void free_error(char *line, FILE *file)
 int read_monty(char *path)
 {
 	FILE *file;
-	char *line, *opcode, *number, *err_1, *err_2;
+	char *line, *opcode, *number, *err_1, *err_2, *err_3;
 	size_t line_size;
 	int l_num;
+	void *(*func)(stack_t **stack, unsigned int line_number);
 
 	err_1 = "Error: Can't open file ";
 	err_2 = ": usage: push integer\n";
+	err_3 = "Unknown instruction";
 	line = opcode = number = NULL;
 	file = fopen(path, "r");
 	if (file == NULL)
@@ -62,6 +64,9 @@ int read_monty(char *path)
 		l_num++;
 
 		/* Ir a puntero a función */
+		func = get_opcodes(opcode);
+		if (func == NULL)
+			fprintf(stderr, "L%d%s", l_num, err_3), free_error(line, file);
 	}
 	free(line), fclose(file);
 	return (0);

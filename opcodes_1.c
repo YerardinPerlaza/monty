@@ -1,6 +1,11 @@
 #include "global.h"
 #include "monty.h"
-
+/**
+ * push - Create a stack and add an int to stack
+ * @stack: double pointer to stack
+ * @line_number: int
+ * Return: void
+ */
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
@@ -24,7 +29,12 @@ void push(stack_t **stack, unsigned int line_number)
 	new_node->next = *stack;
 	*stack = new_node;
 }
-
+/**
+ * pall - Print all the stack
+ * @stack: double pointer to stack
+ * @line_number: int
+ * Return: void
+ */
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current;
