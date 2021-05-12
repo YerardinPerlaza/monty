@@ -58,7 +58,7 @@ int read_monty(char *path, stack_t **stack)
 			}
 			global_vars->push_number = atoi(number);
 		}
-		if (opcode && select_opcode(opcode, stack, l_num) == 1)
+		if (opcode && exec_opcode(opcode, stack, l_num) == 1)
 		{
 			fprintf(stderr, "L%d%s%s\n", l_num, err_3, opcode);
 			return (1);
