@@ -36,16 +36,18 @@ typedef struct instruction_s
 } instruction_t;
 
 /* File reading - input.c */
-int read_monty(char *path);
+int read_monty(char *path, stack_t **stack);
 int check_number(char *number);
 
-void free_error(char *line, FILE *file);
+/* Free - free.c */
+void free_error(char *line, FILE *file, stack_t **stack);
+void free_stack(stack_t **stack);
 
 /* Opcodes - opcodes_1.c */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 
-/* Get Opcodes - get_opcodes.c */
-void *(*get_opcodes(char* opcode))(stack_t **stack, unsigned int line_number);
+/* Opcode selection - select_opcode.c */
+int select_opcode(char *opcode, stack_t **stack, unsigned int line_number);
 
 #endif

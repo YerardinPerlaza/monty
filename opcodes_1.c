@@ -1,5 +1,6 @@
 #include "global.h"
 #include "monty.h"
+
 /**
  * push - Create a stack and add an int to stack
  * @stack: double pointer to stack
@@ -14,6 +15,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	new_node = malloc(sizeof(*new_node));
 	if (new_node == NULL)
+		/* Pasar struct global con línea actual, archivo y push, ¿cómo? */
 		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
 
 	new_node->n = push_number;
@@ -29,6 +31,7 @@ void push(stack_t **stack, unsigned int line_number)
 	new_node->next = *stack;
 	*stack = new_node;
 }
+
 /**
  * pall - Print all the stack
  * @stack: double pointer to stack
