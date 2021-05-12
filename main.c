@@ -1,9 +1,10 @@
 #include "monty.h"
 /**
- * main - Entry point
- * @argc: number of command
- * @argv: command line
- * Return: 0
+ * main - entry point
+ * @argc: number of arguments
+ * @argv: the list of arguments
+ *
+ * Return: 0 if success, 1 if failure
  */
 int main(int argc, char *argv[])
 {
@@ -20,10 +21,10 @@ int main(int argc, char *argv[])
 	global_vars->current_line = NULL;
 	global_vars->push_number = 0;
 
-	read_monty(argv[1], &stack);
-
-	free(global_vars);
-	free_stack(&stack);
+	if (read_monty(argv[1], &stack) == 1)
+		free_all(&stack, EXIT_FAILURE);
+	else
+		free_all(&stack, EXIT_SUCCESS);
 
 	exit(EXIT_SUCCESS);
 }

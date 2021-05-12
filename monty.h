@@ -36,12 +36,12 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct global_vars_s - bla bla bla
- * @file: bla bla
- * @current_line: askjalskdja
- * @push_number: sfjasdjfhalksdfj
+ * struct global_vars_s - a structure to hold some global variables
+ * @file: the file opened
+ * @current_line: the line read by getline
+ * @push_number: the number to be pushed to the stack
  *
- * Description: basldfasldjfhalksjdhfklaf
+ * Description: a structure holding some global variables
  */
 typedef struct global_vars_s
 {
@@ -53,25 +53,25 @@ typedef struct global_vars_s
 global_vars_t *global_vars;
 
 /* File reading - input.c */
-void read_monty(char *path, stack_t **stack);
+int read_monty(char *path, stack_t **stack);
 int check_number(char *number);
 
 /* Free - free.c */
-void free_error(stack_t **stack);
+void free_all(stack_t **stack, int exit_status);
 void free_stack(stack_t **stack);
 
-/* Opcodes - opcodes_1.c */
+/* Opcode execution - exec_opcode.c */
+int exec_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+
+/* Opcodes list, part 1 - opcodes_1.c */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 
-/* Opcodes- opcodes_2.c */
+/* Opcodes list, part 2 - opcodes_2.c */
 void nop(stack_t **stack, unsigned int line_number);
-
-/* Opcode selection - select_opcode.c */
-int select_opcode(char *opcode, stack_t **stack, unsigned int line_number);
 
 /* Opcodes calculation - opcodes_calc.c */
 void add(stack_t **stack, unsigned int line_number);

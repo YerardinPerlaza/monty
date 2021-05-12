@@ -1,24 +1,29 @@
 #include "monty.h"
 
-void free_error(stack_t **stack)
 /**
- * free_error - free, close and exit for an error
- * @stack: stack
- * Return: void
+ * free_all - frees all malloc'ed structs, closes file and exits
+ *            program if on error.
+ * @stack: the stack.
+ * @exit_status: the exit status to exit if 1.
  */
+void free_all(stack_t **stack, int exit_status)
 {
-	free(global_vars->current_line);
-	fclose(global_vars->file);
+	if (global_vars->current_line)
+		free(global_vars->current_line);
+	if (global_vars->file)
+		fclose(global_vars->file);
 	free(global_vars);
 
-	free_stack(stack);
+	if (stack)
+		free_stack(stack);
 
-	exit(EXIT_FAILURE);
+	if (exit_status)
+		exit(EXIT_FAILURE);
 }
+
 /**
- * free_stack - free stack
- * @stack: stack
- * Return: void
+ * free_stack - frees all malloc'ed nodes in the stack.
+ * @stack: the stack
  */
 void free_stack(stack_t **stack)
 {

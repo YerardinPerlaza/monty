@@ -1,10 +1,9 @@
 #include "monty.h"
 
 /**
- * nop - Does not do anythin
- * @stack: double pointer to stack
- * @line_number: line number
- * Return: void
+ * nop - doesn't do anything
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
  */
 void nop(stack_t **stack, unsigned int line_number)
 {

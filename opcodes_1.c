@@ -1,10 +1,9 @@
 #include "monty.h"
 
 /**
- * push - Create a stack and add an int to stack
- * @stack: double pointer to stack
- * @line_number: int
- * Return: void
+ * push - creates a stack and adds an int to the stack
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
  */
 void push(stack_t **stack, unsigned int line_number)
 {
@@ -16,7 +15,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_error(stack);
+		free_all(stack, EXIT_FAILURE);
 	}
 
 	new_node->n = global_vars->push_number;
@@ -34,10 +33,9 @@ void push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pall - Print all the stack
- * @stack: double pointer to stack
- * @line_number: int
- * Return: void
+ * pall - prints the integers of the whole stack
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
@@ -54,26 +52,24 @@ void pall(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pint - print int at the top of stack
- * @stack: stack
- * @line_number: unsigned int
- * Return: void
+ * pint - prints the integer at the top of the stack
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
 	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		free_error(stack);
+		free_all(stack, EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
 }
 
 /**
- * pop - delete in the stack
- * @stack: stack
- * @line_number: unsigned int
- * Return: void
+ * pop - deletes the topmost node of the stack
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
@@ -83,7 +79,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (!current)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		free_error(stack);
+		free_all(stack, EXIT_FAILURE);
 	}
 
 	*stack = current->next;
@@ -91,10 +87,9 @@ void pop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pop - delete in the stack
- * @stack: stack
- * @line_number: unsigned int
- * Return: void
+ * swap - swaps the order of the top two nodes of the stack
+ * @stack: the stack
+ * @line_number: the line number of the script read to display on error
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
@@ -103,7 +98,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL || !((*stack)->next))
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		free_error(stack);
+		free_all(stack, EXIT_FAILURE);
 	}
 
 	current = (*stack)->next;

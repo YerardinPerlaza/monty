@@ -1,7 +1,10 @@
 #include "monty.h"
 
 /**
- * check_number
+ * check_number - checks if a given string is a number
+ * @number: the string to be checked
+ *
+ * Return: 0 if it is an integer, 1 otherwise
  */
 int check_number(char *number)
 {
@@ -14,26 +17,26 @@ int check_number(char *number)
 }
 
 /**
- * main - Entry point
+ * read_monty - reads a monty file
+ * @path: the path of the monty file
+ * @stack: the stack
  *
- * Return: Always 0 (Success)
+ * Return: 0 if success, 1 if failure
  */
-void read_monty(char *path, stack_t **stack)
+int read_monty(char *path, stack_t **stack)
 {
 	FILE *file;
 	char *opcode, *number, *err_1, *err_2, *err_3;
 	size_t line_size;
 	int l_num;
 
-	err_1 = "Error: Can't open file ";
-	err_2 = ": usage: push integer\n";
-	err_3 = ": unknown instruction ";
-	opcode = number = NULL;
+	err_1 = "Error: Can't open file ", err_2 = ": usage: push integer\n";
+	err_3 = ": unknown instruction ", opcode = number = NULL;
 	file = global_vars->file = fopen(path, "r");
 	if (file == NULL)
 	{
 		fprintf(stderr, "%s%s\n", err_1, path);
-		free(global_vars), exit(EXIT_FAILURE);
+		return (1);
 	}
 	l_num = 0;
 	while (getline(&(global_vars->current_line), &line_size, file) != EOF)
@@ -44,18 +47,22 @@ void read_monty(char *path, stack_t **stack)
 		if (opcode && strcmp(opcode, "push") == 0)
 		{
 			if (!number)
-				fprintf(stderr, "L%d%s", l_num, err_2), free_error(stack);
+			{
+				fprintf(stderr, "L%d%s", l_num, err_2);
+				return (1);
+			}
 			if (number && check_number(number) == 1)
-				fprintf(stderr, "L%d%s", l_num, err_2), free_error(stack);
+			{
+				fprintf(stderr, "L%d%s", l_num, err_2);
+				return (1);
+			}
 			global_vars->push_number = atoi(number);
 		}
-		printf("opcode = %s, number = %d\n", opcode, global_vars->push_number);
-
 		if (opcode && select_opcode(opcode, stack, l_num) == 1)
 		{
 			fprintf(stderr, "L%d%s%s\n", l_num, err_3, opcode);
-			free_error(stack);
+			return (1);
 		}
 	}
-	free(global_vars->current_line), fclose(file);
+	return (0);
 }
