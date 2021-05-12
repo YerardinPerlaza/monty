@@ -1,5 +1,10 @@
 #include "monty.h"
-
+/**
+ * main - Entry point
+ * @argc: number of command
+ * @argv: command line
+ * Return: 0
+ */
 int main(int argc, char *argv[])
 {
 	stack_t *stack = NULL;
