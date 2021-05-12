@@ -1,10 +1,13 @@
 #include "monty.h"
 
-void free_error(char *line, FILE *file, stack_t **stack)
+void free_error(stack_t **stack)
 {
-	free(line);
-	fclose(file);
+	free(global_vars->current_line);
+	fclose(global_vars->file);
+	free(global_vars);
+
 	free_stack(stack);
+
 	exit(EXIT_FAILURE);
 }
 

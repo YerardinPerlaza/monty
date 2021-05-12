@@ -53,11 +53,11 @@ typedef struct global_vars_s
 global_vars_t *global_vars;
 
 /* File reading - input.c */
-int read_monty(char *path, stack_t **stack);
+void read_monty(char *path, stack_t **stack);
 int check_number(char *number);
 
 /* Free - free.c */
-void free_error(char *line, FILE *file, stack_t **stack);
+void free_error(stack_t **stack);
 void free_stack(stack_t **stack);
 
 /* Opcodes - opcodes_1.c */
@@ -70,5 +70,9 @@ int select_opcode(char *opcode, stack_t **stack, unsigned int line_number);
 
 /* Opcodes calculation - opcodes_calc.c */
 void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void divi(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
 
 #endif

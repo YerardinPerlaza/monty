@@ -14,8 +14,10 @@ void push(stack_t **stack, unsigned int line_number)
 
 	new_node = malloc(sizeof(*new_node));
 	if (new_node == NULL)
-		/* Pasar struct global con línea actual, archivo y push, ¿cómo? */
-		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_error(stack);
+	}
 
 	new_node->n = global_vars->push_number;
 	new_node->prev = NULL;
@@ -59,7 +61,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (!current)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
+		free_error(stack);
 	}
 
 	*stack = current->next;
