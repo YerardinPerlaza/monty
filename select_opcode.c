@@ -9,7 +9,7 @@
 int select_opcode(char *opcode, stack_t **stack, unsigned int line_number)
 {
 	instruction_t opcodes[] = {
-		{"push", push}, {"pall", pall},
+		{"push", push}, {"pall", pall}, {"pint", pint}, {"swap", swap},
 		{NULL, NULL}
 	};
 	int counter;
