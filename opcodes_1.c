@@ -17,22 +17,23 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		free_all(stack, EXIT_FAILURE);
 	}
-
 	new_node->n = global_vars->push_number;
 
+	current = *stack;
 	/* Stack mode */
 	if (global_vars->mode == 0)
 	{
 		new_node->prev = NULL;
 		new_node->next = !*stack ? NULL : *stack;
 
+		if (current)
+			current->prev =  new_node;
 		*stack = new_node;
 		return;
 	}
 
 	/* Queue mode */
 	new_node->next = NULL;
-	current = *stack;
 	if (!current)
 	{
 		new_node->prev = NULL;
