@@ -41,7 +41,7 @@ $ ./monty bytecode_file_name
 
 ## Opcode instruction list
 
-### stack/queue
+### stack/queue <a name="stack-queue"></a>
 
 The `stack`/`queue` opcodes determine the behavior of the doubly linked list structure. If the `queue` opcode is not specified, then Monty operates with the `stack` mode by default. You can switch between modes without any inconvenients.
 
@@ -69,7 +69,7 @@ The `swap` opcode swaps the order of the first two elements of the douby linked 
 
 The `nop` opcode does nothing.
 
-### add/sub/mul/div/mod
+### add/sub/mul/div/mod <a name="add-sub-mul-div-mod"></a>
 
 These five are the five arithmetic opcode operations. All the operations are done with the first two numbers of the stack. The first element is removed and the result is replaced in the second. As their name implies, the `add` opcode adds two numbers, the `sub` opcode subtracts two numbers, the `mul` opcode multiplies two numbers, the `div` opcode divides two numbers and the `mod` opcode saves the modulo of two numbers.
 
@@ -81,7 +81,7 @@ The `pchar` opcode prints as character the ASCII value saved of the first elemen
 
 The `pstr` opcode prints all characters saved from the head of the doubly linked list. It stops when there's nothing in the stack, the value of the element is 0 or is not in the ASCII table.
 
-### rotl/rotr
+### rotl/rotr <a name="rotl-rotr"></a>
 
 These two opcodes rotates the first or the last element of the list. The `rotl` opcode sends the first element of the doubly linked list to the end while the `rotr` opcode sends the last element of the doubly linked list to the beginning.
 
