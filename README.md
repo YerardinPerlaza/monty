@@ -21,14 +21,9 @@ Monty is an interpreter for bytecode files for Holberton School's Monty 0.98 scr
     + [pstr](#pstr)
     + [rotl/rotr](#rotl-rotr)
   * [Examples of Monty bytecodes](#examples-of-monty-bytecodes)
-    + [Example 1](#example-1)
-    + [Example 2](#example-2)
-    + [Example 3](#example-3)
 - [Brainfuck](#brainfuck)
 - [File list and descriptions](#file-list-and-descriptions)
 - [Authors](#authors)
-  * [👤 Alfredo Delgado Moreno](#---alfredo-delgado-moreno)
-  * [👤 Yerardin Perlaza](#---yerardin-perlaza)
 
 ## Compilation
 
